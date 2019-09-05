@@ -20,9 +20,7 @@ public class PerguntaController {
 
 	@Autowired
 	private PerguntaService perguntaService;
-
-	// CRUD
-	// C
+	
 	@PostMapping
 	public ResponseEntity<?> criaPergunta(@Valid @RequestBody Pergunta pergunta) {
 		try {
@@ -33,8 +31,7 @@ public class PerguntaController {
 		}
 	}
 
-	// R
-	@GetMapping("/")
+	@GetMapping
 	public ResponseEntity<?> exibirTodasPerguntas() {
 		try {
 			return ResponseEntity.ok().body(perguntaService.pegarTodasPerguntas());
