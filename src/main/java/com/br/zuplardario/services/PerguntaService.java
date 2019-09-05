@@ -11,13 +11,13 @@ public class PerguntaService {
 	@Autowired
 	private PerguntasRepository perguntasRepository;
 
-	// C (Create)
+	// (Create)
 	public String cadastrarPergunta(Pergunta pergunta) {
 		perguntasRepository.save(pergunta);
 		return "Pergunta cadastrada";
 	}
 
-	// R (Visualizar)
+	// (Review)
 	public Iterable<Pergunta> pegarTodasPerguntas() {
 		return perguntasRepository.findAll();
 	}
@@ -28,5 +28,24 @@ public class PerguntaService {
 
 	public long quantidadeDePerguntas() {
 		return perguntasRepository.count();
+	}
+
+	// (Update)
+	public Pergunta atualizarPergunta(int id, Pergunta atualizar) {
+		Pergunta teste = new Pergunta();
+		teste = perguntasRepository.findById(id).get();
+
+		if (teste != null) {
+			atualizar.setId(id);
+			return perguntasRepository.save(atualizar);
+
+		}
+		return null;
+
+	}
+
+	// (Delete)
+	public void excluirPergunta(int id) {
+		perguntasRepository.deleteById(id);
 	}
 }
